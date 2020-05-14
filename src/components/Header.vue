@@ -1,105 +1,99 @@
 <template>
-  <div>
-    <!-- メニューバーの色など  -->
-    <v-app-bar
-      color="deep-purple accent-4"
-      dense
-      dark
-    >
-      
-     
-     
-     <!-- ハンバーガーメニュー自体 -->
-    <v-menu
-        left
-        bottom
+  <v-card flat tile>
+    <v-window v-model="onboarding" reverse>
+      <v-window-item
+      v-for="n in length"
+        :key="`card-${n}`"
       >
-
-        <!-- 縦三点ボタン自体  -->
-        <template v-slot:activator="{ on }">
-        
-        <!-- ボタンとしての機能を付加 -->
-          <v-btn icon v-on="on">
-            
-            <!-- 縦三点ボタンのアイコン -->
-            <v-icon>mdi-format-list-bulleted-square</v-icon>
-          
-          </v-btn>
-        </template>
-
-        <!--  クリックして出したウィンドウ -->
-        <v-list>
-          <v-list-item
-            v-for="n in 5"
-            :key="n"
-            @click="() => {}"
+        <v-card
+          color="grey"
+          height="200"
+        >
+          <v-row
+            class="fill-height"
+            align="center"
+            justify="center"
+            tag="v-card-text"
           >
-            <v-list-item-title>Option {{ n }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-     
-      </v-menu>
+           
+          
+          <h1 style="font-size: 5rem;" class="white--text">Slide {{ n }}</h1>
+          
+          </v-row>
+        </v-card>
+      </v-window-item>
+    </v-window>
 
+   <!--  スライドの下の部分の間隔調整  -->
+   
+    <v-card-actions class="justify-space-between">
+     <!-- 左のボタンを押すことでスライドが動くようにしている -->
+      <v-btn
+        text
+        @click="prev"
+      >
      
-     
-     
-      <!-- ページのタイトル -->
-      <v-toolbar-title>  Porc-épic T.C.</v-toolbar-title>
-
-    <!-- 上に書いてあるメニューバーと下に書いてあるボタンの間隔をあけている  -->
-      <v-spacer></v-spacer>
-
-<!--  ハートのボタン -->
-      <v-btn text href="https://www.instagram.com/tomoaki_bb6/" color="" >
-        <v-icon>mdi-fruit-pineapple</v-icon>
+      <!--  左矢印  -->
+        <v-icon>mdi-tennis</v-icon>
       </v-btn>
-
-<!--  虫眼鏡ボタン -->
-  <!--    <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>  -->
-
-
-<!--  縦三点ボタン  -->
-    <!-- メニューを表示させるコンポーネント  -->  
-      <v-menu
-        left
-        bottom
-      > 
-        <!-- 縦三点ボタン自体  -->
-      <!--  <template v-slot:activator="{ on }"> -->
+      <!--  左のボタンと真ん中のボタンが連動して動くようになる  -->
+      <v-item-group
+        v-model="onboarding"
+        class="text-center"
+        mandatory
+      >
         
-        <!-- ボタンとしての機能を付加 -->
-         <!-- <v-btn icon v-on="on">  -->
-            
-            <!-- 縦三点ボタンのアイコン -->
-          <!--  <v-icon>mdi-dots-vertical</v-icon>
-          
-          </v-btn>
-        </template>  -->
-
-        <!--  クリックして出したウィンドウ -->
-        <v-list>
-          <v-list-item
-            
+        <v-item
+          v-for="n in length"
+          :key="`btn-${n}`"
+          v-slot:default="{ active, toggle }"
+        >
+          <v-btn
+            :input-value="active"
+            icon
+            @click="toggle"
           >
-           <!-- ここの中に表示したいものを書く  -->
-            
-            <v-list-item-title>
-               
-            </v-list-item-title> 
-          
-          
-          
-          </v-list-item>
-        </v-list>
-     
-      </v-menu>  
-    
-    
-    </v-app-bar>
-  </div>
+          <!--  四つの丸  -->
+            <v-icon>mdi-tennis-ball</v-icon>
+          </v-btn>
+        </v-item>
+      
+      </v-item-group>
+      <v-btn
+        text
+        @click="next"
+      >
+      
+      <!-- 右矢印  -->
+        <v-icon>mdi-tennis</v-icon>
+      </v-btn>
+    </v-card-actions>
+  
+  </v-card>
 </template>
+
+<!-- スライドの枚数などの変更 -->
+<script>
+  export default {
+    data: () => ({
+      length: 4,
+      onboarding: 0,
+    }),
+
+    methods: {
+      next () {
+        this.onboarding = this.onboarding + 1 === this.length
+          ? 0
+          : this.onboarding + 1
+      },
+      prev () {
+        this.onboarding = this.onboarding - 1 < 0
+          ? this.length - 1
+          : this.onboarding - 1
+      },
+    },
+  }
+</script>
 
 
   
