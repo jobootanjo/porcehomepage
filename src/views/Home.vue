@@ -1,10 +1,14 @@
 <template>
-  <v-card>
+ 
+
+<ul>
+<li >
+<v-card>
    <v-card-title>Porc-épic T.C. 38th
 Official Website</v-card-title> 
   <v-card-subtitle>1981年創立 Porc-épic T.C.</v-card-subtitle>
    <v-card-text>
-    <v-img src="@/assets/home.jpg" aspect-ratio="2.4"></v-img>
+    <v-img src="@/assets/home.jpg" aspect-ratio="2.5"></v-img>
    </v-card-text>
     <v-card-actions>
        <v-btn href="https://twitter.com/Porcepic38th" color="pink" dark fab large>
@@ -16,7 +20,43 @@ Official Website</v-card-title>
 
     </v-card-actions>
   </v-card>
+</li>
+<li>
+ 
+</li>
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </template>
+<style>
+li{list-style:none}
+</style>
+
+
+
+
+
+
+
+
 
 <script>
 // @ is an alias to /src
@@ -27,4 +67,3 @@ export default {
   
   }
 }
-</script>
